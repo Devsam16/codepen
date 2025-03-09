@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodePen</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <a href="#" class="sidebar-logo">
+          <img src="./images/codepenlogo.jpeg" alt="CodePen" class="logo">
+        </a>
+        <nav class="sidebar-nav">
+            <a href="#" class="start-coding-btn">Start Coding</a>
+          <a href="#" class="nav-item">Search Pens</a>
+          <a href="#" class="nav-item">Challenges</a>
+          <a href="#" class="nav-item">Spark</a>
+          <a href="#" class="nav-item pro">CodePen <span>PRO</span></a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <div class="search-container">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="Search CodePen...">
+          </div>
+        </div>
+        <div class="header-right">
+          <a href="./otherhtmlpages/login.html"><button class="btn btn-login">Log In</button></a>
+          <a href="./otherhtmlpages/signup2.html"><button class="btn btn-signup">Sign Up</button></a>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-main">
+          <div class="hero-content">
+            <h1>The best place to build, test, and discover front-end code.</h1>
+            <p>CodePen is a <strong>social development environment</strong> for front-end designers and developers. Build and deploy a website, show off your work, build test cases to learn and debug, and find inspiration.</p>
+            <button class="btn btn-signup btn-large">Sign Up for Free</button>
+          </div>
+          <div class="hero-code">
+            <div class="code-editor">
+              <div class="editor-header">
+                <span class="file-name">HTML</span>
+                <div class="editor-actions">
+                  <span class="action-dot"></span>
+                  <span class="action-dot"></span>
+                  <span class="action-dot"></span>
+                </div>
+              </div>
+              <div class="editor-content">
+                <pre><code>&lt;div class="gradient"&gt;
+  &lt;h1&gt;Hello CodePen&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 18 22 12 16 6"></path>
+                <path d="M8 6 2 12 8 18"></path>
+              </svg>
+            </div>
+            <h3>Build & Test</h3>
+            <p>Get work done quicker by building out entire projects or isolating code to test features and animations.</p>
+            <a href="#" class="card-link">Try the Editor</a>
+          </div>
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+              </svg>
+            </div>
+            <h3>Learn & Discover</h3>
+            <p>Want to upgrade your skills and get noticed? Participating in CodePen Challenges is a great way to learn.</p>
+            <a href="#" class="card-link">Join Next Challenge</a>
+          </div>
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                <polyline points="16 6 12 2 8 6"></polyline>
+                <line x1="12" y1="2" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <h3>Share Your Work</h3>
+            <p>Become part of the most active front-end community in the world by sharing work.</p>
+            <a href="#" class="card-link">Explore Trending</a>
+          </div>
+        </div>
+      </section>
+      <section class="inspiration">
+        <h2>Find inspiration from 1.8 million+ front-end designers and developers.</h2>
+        <div class="inspiration-grid">
+          <div class="project-card">
+            <div class="project-preview"></div>
+            <div class="project-info">
+              <div class="author-avatar"></div>
+              <div class="author-info">
+                <h4>Demo Project</h4>
+                <p>by CodePen User</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-preview"></div>
+            <div class="project-info">
+              <div class="author-avatar"></div>
+              <div class="author-info">
+                <h4>Demo Project</h4>
+                <p>by CodePen User</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-preview"></div>
+            <div class="project-info">
+              <div class="author-avatar"></div>
+              <div class="author-info">
+                <h4>Demo Project</h4>
+                <p>by CodePen User</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section class="technologies">
+        <h2>A front-end environment made for testing and sharing</h2>
+        <div class="tech-logos">
+          <span class="tech-logo react">React</span>
+          <span class="tech-logo vue">Vue</span>
+          <span class="tech-logo tailwind">Tailwind</span>
+          <span class="tech-logo sass">Sass</span>
+          <span class="tech-logo gsap">GSAP</span>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-logos">
+          <img src="./image/adb.webp" alt="">
+          <img src="./image/bm.webp" alt="">
+          <img src="./image/goole.webp" alt="">
+          <img src="./image/msoft.webp" alt="">
+          <img src="./image/net.webp" alt="">
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">© 2024 CodePen Clone</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
