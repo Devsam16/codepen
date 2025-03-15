@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodePen Search</title>
+  <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../othercsspages/search.css">
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      background-color: #1d1e22;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+    }
+    
+    /* Left sidebar */
+    .sidebar {
+      width: 180px;
+      background-color: #131417;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    .logo-container {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    
+    
+    
+    
+    .editor-text {
+      font-size: 11px;
+      color: #999;
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+    
+    .start-coding-btn {
+      margin: 10px 20px;
+      padding: 10px;
+      text-align: center;
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      position: relative;
+      border-radius: 4px;
+    }
+    
+    .start-coding-btn:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 4px;
+      padding: 1px;
+      background: linear-gradient(90deg, #0ebeff, #ffdd40, #ae63e4);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    .sidebar-nav {
+      margin-top: 10px;
+    }
+    
+    .sidebar-link {
+      display: block;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    
+    .pro-badge {
+      display: inline-block;
+      background-color: #ffdd40;
+      color: #000;
+      font-size: 11px;
+      padding: 1px 4px;
+      border-radius: 3px;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+    
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 12px;
+      color: #999;
+      line-height: 1.5;
+    }
+    
+    .sidebar-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .icon-box {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1d1e22;
+      border-radius: 4px;
+      color: #999;
+      font-size: 18px;
+    }
+    
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 10px 10px 10px 40px;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 20px;
+    }
+    
+    .auth-buttons {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .sign-up-btn {
+      padding: 8px 16px;
+      background-color: #47cf73;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .log-in-btn {
+      padding: 8px 16px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    /* Blue line */
+    .blue-line {
+      height: 3px;
+      background: linear-gradient(90deg, #0ebeff, #47cf73, #ae63e4);
+    }
+    
+    /* Tabs */
+    .tabs {
+      display: flex;
+      padding: 10px 20px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    
+    .tab {
+      padding: 8px 16px;
+      margin-right: 10px;
+      background-color: #2a2a2a;
+      color: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    
+    .tab.active {
+      background-color: #3a3a3a;
+    }
+    
+    .tab-icon {
+      color: #999;
+    }
+    
+    /* Filters */
+    .filters {
+      display: flex;
+      padding: 10px 20px;
+      border-bottom: 1px solid #2a2a2a;
+      align-items: center;
+      gap: 15px;
+      font-size: 13px;
+    }
+    
+    .filter-label {
+      color: #999;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    
+    .filter-dropdown {
+      padding: 6px 30px 6px 10px;
+      background-color: #2a2a2a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      position: relative;
+      appearance: none;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    
+    .dropdown-arrow {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 20px;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .checkbox {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #999;
+      border-radius: 3px;
+    }
+    
+    /* Search results */
+    .search-results {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 18px;
+      padding: 20px;
+      background-color: #1d1e22;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 20px;
+      border-top: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      background-color: #131417;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .footer-section {
+      margin-bottom: 5px;
+    }
+    
+    .footer-heading {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      margin-right: 15px;
+      display: inline-block;
+    }
+    
+    .footer-right {
+      text-align: right;
+    }
+    
+    .footer-logo {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .copyright {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <div class="logo">
+       <a href="../index.html"><img src="../images/codepenlogo.jpeg" alt=""></a>
+      </div>
+    </div>
+    
+    <div class="editor-text">TRY OUR ONLINE EDITOR</div>
+    
+    <a href="./startcode.html"><button class="start-coding-btn">Start Coding</button></a>
+    
+    <div class="sidebar-nav">
+      <a href="#" class="sidebar-link">Search Pens</a>
+      <a href="#" class="sidebar-link">Challenges</a>
+      <a href="#" class="sidebar-link">Spark</a>
+      <a href="#" class="sidebar-link">CodePen <span class="pro-badge">PRO</span></a>
+    </div>
+    
+    <div class="sidebar-bottom">
+      <div class="sidebar-icons">
+        <div class="icon-box">»</div>
+        <div class="icon-box">⌂</div>
+        <div class="icon-box">↗</div>
+        <div class="icon-box">✎</div>
+        <div class="icon-box">💬</div>
+        <div class="icon-box">📋</div>
+        <div class="icon-box">T</div>
+        <div class="icon-box">✉</div>
+        <div class="icon-box">↗</div>
+      </div>
+      <div>Design and Development</div>
+      <div>tips in your inbox.</div>
+      <div>Every weekday.</div>
+      <div class="carbon-text">(ads via Carbon)</div>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="search-bar">
+        <span class="search-icon">⚲</span>
+        <input type="text" class="search-input" placeholder="Search CodePen...">
+      </div>
+      <div class="auth-buttons">
+       <a href="./signup2.html"> <button class="sign-up-btn">Sign Up</button></a>
+       <a href="./login.html"><button class="log-in-btn">Log In</button></a>
+      </div>
+    </div>
+    
+    <!-- Blue Line -->
+    <div class="blue-line"></div>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab">
+        <span class="tab-icon">👤</span>
+        <span>Your Work</span>
+      </div>
+      <div class="tab active">
+        <span class="tab-icon">📝</span>
+        <span>Pens</span>
+      </div>
+      <div class="tab">
+        <span class="tab-icon">📁</span>
+        <span>Projects</span>
+      </div>
+      <div class="tab">
+        <span class="tab-icon">📚</span>
+        <span>Collections</span>
+      </div>
+    </div>
+    
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <div class="filter-label">SORT BY</div>
+        <div class="dropdown-container">
+          <select class="filter-dropdown">
+            <option>Relevance & Popularity</option>
+          </select>
+          <span class="dropdown-arrow">▼</span>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <div class="filter-label">SEARCH DEPTH</div>
+        <div class="dropdown-container">
+          <select class="filter-dropdown">
+            <option>Everything</option>
+          </select>
+          <span class="dropdown-arrow">▼</span>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <div class="filter-label">INCLUDE FORKS?</div>
+        <div class="checkbox-container">
+          <div class="checkbox"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Search Results -->
+    <div class="search-results">
+      Enter a search term above.
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-links">
+        <div class="footer-row">
+          <div class="footer-section">
+            <div class="footer-heading">CodePen</div>
+            <div class="footer-links-container">
+              <a href="#" class="footer-link">About</a>
+              <a href="#" class="footer-link">Blog</a>
+              <a href="#" class="footer-link">Podcast</a>
+              <a href="#" class="footer-link">Documentation</a>
+              <a href="#" class="footer-link">Support</a>
+              <a href="#" class="footer-link">Advertise</a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <div class="footer-heading">For</div>
+            <div class="footer-links-container">
+              <a href="#" class="footer-link">Teams</a>
+              <a href="#" class="footer-link">Education</a>
+              <a href="#" class="footer-link">Privacy</a>
+              <a href="#" class="footer-link">Embeds</a>
+              <a href="#" class="footer-link">Asset Hosting</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-row">
+          <div class="footer-section">
+            <div class="footer-heading">Social</div>
+            <div class="footer-links-container">
+              <a href="#" class="footer-link">YouTube</a>
+              <a href="#" class="footer-link">Bluesky</a>
+              <a href="#" class="footer-link">Instagram</a>
+              <a href="#" class="footer-link">Mastodon</a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <div class="footer-heading">Community</div>
+            <div class="footer-links-container">
+              <a href="#" class="footer-link">Spark</a>
+              <a href="#" class="footer-link">Challenges</a>
+              <a href="#" class="footer-link">Topics</a>
+              <a href="#" class="footer-link">Code of Conduct</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-right">
+        <div class="footer-logo">
+          <div class="logo">
+            <a href="../index.html"><img src="../images/codepenlogo.jpeg" alt=""></a>
+          </div>
+        </div>
+        <div class="copyright">©2023 CodePen</div>
+        <div class="copyright">Demo or it didn't happen.</div>
+        <div class="copyright">Terms of Service · Privacy Policy</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
