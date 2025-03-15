@@ -224,9 +224,6 @@ input[type="text"]::placeholder {
 }
 
 .hero-code {
-  background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-  padding: 1px;
-  border-radius: 8px;
 }
 
 .code-editor {
